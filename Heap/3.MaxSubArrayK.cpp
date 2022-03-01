@@ -7,7 +7,7 @@ class Solution
         // your code here
         
         //SOLUTION 1
-        //TC = O(N*(K-1)) = Worst
+        //TC = O(N*(K-1)) = Worst   SC= O(1)
        vector <int> ans;
         for(int i=0;i<=n-k;i++){
             int max=arr[i];
@@ -18,8 +18,10 @@ class Solution
             ans.push_back(max);
         }
         return ans;
-        //-------------------------------------//
-        //O(n)
+        //Using AVL/Priority Queue -> O(nlogk)    S=O(K)
+        //------------------------------------------------//
+        //T=O(n)  S=O(K)
+        vector <int> ans;
         if(k==1){
             ans.push_back(arr[0]);
         }
@@ -36,11 +38,14 @@ class Solution
                 dq.push_back(i);
             }
             if(i>k-2){
-                ans.push_back(arr[dq.front()]);
-                if(dq.front()<(i-k-1))
+                if(dq.front()<(i-(k-1))) //gets out of window
                     dq.pop_front();
+                ans.push_back(arr[dq.front()]); //push max in window
+                
             }
         }
+        
+        return ans;
         
         return ans;
 

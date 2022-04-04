@@ -12,6 +12,7 @@ class Solution{
         //memorization of already evaluated nodes = DP
         if(dp[m][n] != -1) return dp[m][n];
         
+        //              m element included     m element not included
         return dp[m][n] = solve(S,m,n-S[m]) + solve(S,m-1,n);
     }
     long long int count(int S[], int m, int n) {
